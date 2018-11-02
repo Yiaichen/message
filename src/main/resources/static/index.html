@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://xjuc3.pabid.cn/ -->
+<html lang="en" style="font-size: 53.3333px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <title>共享平台</title>
+    <script src="share_files/utracking.js.下载" async=""></script><script type="text/javascript">
+(function(w,d,t,s,q,m,n){if(w.utq)return;q=w.utq=function(){q.process?q.process(arguments):q.queue.push(arguments);};q.queue=[];m=d.getElementsByTagName(t)[0];n=d.createElement(t);n.src=s;n.async=true;m.parentNode.insertBefore(n,m);})(window,document,'script','https://image.uc.cn/s/uae/g/0s/ad/utracking.js');utq('set', 'convertMode', true);utq('set', 'trackurl', 'huichuan.sm.cn/lp'); 
+    var deviceWidth = document.documentElement.clientWidth;
+    if (deviceWidth > 750) deviceWidth = 750;
+    document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+
+
+// 基础代码
+(function(w,d,t,s,q,m,n){if(w.utq)return;q=w.utq=function(){q.process?q.process(arguments):q.queue.push(arguments);};q.queue=[];m=d.getElementsByTagName(t)[0];n=d.createElement(t);n.src=s;n.async=true;m.parentNode.insertBefore(n,m);})(window,document,'script','https://image.uc.cn/s/uae/g/0s/ad/utracking.js');utq('set', 'convertMode', true);utq('set', 'trackurl', 'huichuan.sm.cn/lp');
+
+    </script>
+<link rel="stylesheet" type="text/css" href="share_files/layer.css"><link rel="stylesheet" href="share_files/style.css"><link rel="stylesheet" href="share_files/layer(1).css" id="layui_layer_skinlayercss" style=""></head>
+
+
+<body>
+    <img src="share_files/img1.jpg" class="img100">
+    <div class="box">
+        <div class="row">
+            <span class="label"><i>*</i>姓名：</span><input type="text" class="flex1" placeholder="请输入您的名字" name="name">
+        </div>
+        <div class="row">
+            <span class="label"><i>*</i>手机号：</span><input type="text" class="flex1" placeholder="请输入您的手机号" name="phone">
+        </div>
+        <div class="row">
+            <span class="label"><i>*</i>贷款金额：</span><input type="text" class="flex1" placeholder="请输入您的贷款金额" name="content">
+        </div>
+
+    <button style="border:none;display:block;" class="btn" id="submit" onclick="submit()" ut-data-click="" ut-data-convertid="151359" ut-data-eventtype="CompleteRegistration">提交</button>
+        <div class="font0">
+            <img src="share_files/img2.jpg" class="img100">
+        </div>
+        <p class="footer_tip">厦门小小雨点金融信息服务有限公司</p>
+    <p class="footer_tip">市场有风险，借款需谨慎</p>
+    <p class="footer_tip">具体放款时间和金额视个人情况而定</p>
+    </div>
+
+
+<script src="share_files/jquery-1.7.min.js.下载"></script>
+<script src="share_files/layer.js.下载"></script>
+
+<script>
+    function submit() {
+        var url = window.location.href;
+
+        var username = $('.box').find('input[name="name"]').val();
+        var mobile_post = $('.box').find('input[name="phone"]').val();
+        var password = $('.box').find('input[name="content"]').val();
+        var submit = 'true';
+
+        var reg = /(^1[3|4|5|7|8][0-9]{9}$)/;
+        if (username == '') {
+            layer.msg('用户名不能为空', { icon: 2 ,time:2500});
+            return;
+        }
+        
+       else if (mobile_post == '') {
+            layer.msg('请输入手机号码', { icon: 2 ,time:2500});
+            return;
+        }
+
+        else if (!reg.test(mobile_post)) {
+            layer.msg('请输入正确的手机号码', { icon: 2,time:3000 });
+            return;
+        }
+
+        $.ajax({
+            url:'/save',
+            type:'POST',
+            contentType: 'application/json; charset=UTF-8',
+            async:false,
+            dataType:'text',
+            data:JSON.stringify({content:password,name:username,phone:mobile_post}),
+            success: function (r) {
+                if(r == 'success'){
+                    layer.alert('成功!',{icon:1,time:1500});
+                    setTimeout(function(){window.location.reload()},2000);
+                }else if(r == 'error'){
+                    layer.msg('失败', { icon: 5 ,time:2500});
+                }
+            }
+        });
+
+    }
+    </script>
+</body></html>

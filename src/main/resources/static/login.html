@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>管理员你好</title>
+    <link rel="stylesheet" href="./css/style1.css">
+    <link rel="stylesheet" href="./share_files/layer.css">
+
+    <script type="text/javascript" src="./js/jquery.min.js.下载"></script>
+    <script src="./share_files/layer.js.下载"></script>
+    <script type="text/javascript">
+        function submit() {
+
+            var username = $('#name').val();
+            var password = $('#password').val();
+
+            if (username == '' || password == '') {
+                layer.msg('用户名或密码不能为空', {icon: 2, time: 2500});
+                return;
+            }
+
+            $.ajax({
+                url: '/login/get',
+                type: 'POST',
+                contentType: 'application/json; charset=UTF-8',
+                async: false,
+                dataType: 'json',
+                data: JSON.stringify({password: password, name: username}),
+                success: function (r) {
+                    if (r.name != null && r.name != undefined) {
+                        window.location.href = "/message.html"
+                    } else if (r.error == "1") {
+                        layer.msg('用户名或密码不正确', {icon: 5, time: 2500});
+                    }
+                }
+            });
+
+        }
+
+    </script>
+</head>
+
+<body>
+<!--<div class="login">
+    <div class="welcome"><img src="./images/welcome.png"></div>
+    <div class="login-form">
+        <div class="login-inp"><label>登录</label><input type="text" id="name" placeholder=""></div>
+        <div class="login-inp"><label>密码</label><input type="password" id="password" placeholder=""></div>
+        <div class="login-inp"><a onclick="submit()">立即登录</a></div>
+    </div>
+</div>-->
+
+<!-- Top Panel -->
+<div class="top_panel">
+    <div class="wrapper">
+        <div class="user">
+            <img src="images/user_avatar.png" alt="user_avatar" class="user_avatar">
+            <span class="label"><a href="#"></a></span>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper contents_wrapper">
+
+    <div class="login">
+        <div class="widget_header">
+            <h4 class="widget_header_title wwIcon i_16_login">Login</h4>
+        </div>
+        <div class="widget_contents lgNoPadding">
+                <div class="line_grid">
+                    <div class="g_2 g_2M"><span class="label">User</span></div>
+                    <div class="g_10 g_10M">
+                        <input class="simple_field tooltip" id="name" title="Your Username" type="text" placeholder="管理员账号"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line_grid">
+                    <div class="g_2 g_2M"><span class="label">Pass</span></div>
+                    <div class="g_10 g_10M">
+                        <input class="simple_field tooltip" id="password" title="Your Password" type="password" value="password">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line_grid">
+                    <div class="g_6"><input class="submitIt simple_buttons" value="Log In" onclick="submit()" type="submit">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
