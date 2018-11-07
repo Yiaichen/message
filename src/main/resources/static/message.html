@@ -13,7 +13,7 @@
 
     <style type="text/css" media="screen">
         body {
-            background-color: #f1f1f1;
+            background-color: #f8f8f8;
             margin: 0;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
@@ -120,6 +120,53 @@
             width: 90px;
         }
 
+        .aui-order-fl {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            position: relative;
+            overflow: hidden;
+            padding-left: 1.2rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+        }
+
+        .aui-order-time:before {
+            content: " ";
+            display: inline-block;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background-image: url(images/user.png);
+            background-size: 18px;
+        }
+
+        .aui-order-address:before {
+            content: " ";
+            display: inline-block;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background-image: url(images/phone.png);
+            background-size: 18px;
+        }
+
+        .aui-order-door:before {
+            content: " ";
+            display: inline-block;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background-image: url(images/money.png);
+            background-size: 18px;
+        }
+
     </style>
 
     <script type="text/javascript" src="./js/jquery.min.js.下载"></script>
@@ -156,12 +203,9 @@
                             var txt = '<div class="aui-assets-item"><div class="aui-assets-day"><i class="icon icon-time"></i>' + formatDate(r[i].time) + '\n' +
                                 '            </div>\n' +
                                 '            <div class="aui-assets-box">\n' +
-                                '                <h2>' + r[i].name + ' (' + r[i].phone + ')</h2>\n' +
-                                '                <div class="aui-flex">\n' +
-                                '                    <div class="aui-flex-box">\n' +
-                                '                        <p>贷款金额：' + r[i].content + '</p>\n' +
-                                '                    </div>\n' +
-                                '                </div>\n' +
+                                '                <p class="aui-order-fl aui-order-time">贷款用户：' + r[i].name + '</p>\n' +
+                                '                <p class="aui-order-fl aui-order-address">联系方式：' + r[i].phone + '</p>\n' +
+                                '                <p class="aui-order-fl aui-order-door">贷款金额：' + r[i].content + '</p>\n' +
                                 '            </div>\n' +
                                 '        </div>';
                             txts = txts + txt;
@@ -215,13 +259,7 @@
         <input class="button" onclick="query()" type="submit" value="查询">
     </div>
     <section class="aui-scrollView" id="data">
-        <a href="javascript:void(0);" class="aui-assets-item">
-                <div class="aui-flex">
-                    <div class="aui-flex-box" style="text-align: center;">
-                        <p>暂无数据</p>
-                    </div>
-                </div>
-        </a>
+
     </section>
 </section>
 
