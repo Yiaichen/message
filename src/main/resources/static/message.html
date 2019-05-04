@@ -128,13 +128,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var date = new Date();
+            var month = date.getMonth() + 1;
             laydate.render({
                 elem: '#beginTime', //指定元素
-                value: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate()<10?'0'+date.getDate() : date.getDate())
+                value: date.getFullYear() + '-' + (month<10?'0'+month : month) + '-' + (date.getDate()<10?'0'+date.getDate() : date.getDate())
             });
             laydate.render({
                 elem: '#endTime', //指定元素
-                value: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate()<10?'0'+date.getDate() : date.getDate())
+                value: date.getFullYear() + '-' + (month<10?'0'+month : month) + '-' + (date.getDate()<10?'0'+date.getDate() : date.getDate())
             });
             setTimeout(function(){query();},500);
         });
